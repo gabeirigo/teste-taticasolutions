@@ -1,5 +1,5 @@
 ## Rodar server mock
-Instale o json-server de forma global usando "yarn add -g json-server" ou "npm install -g json-server
+Instale o json-server de forma global usando "yarn add -g json-server" ou "npm install -g json-server"
 Navegue para a raiz do projeto e execude "json-server db.json"
 Vai rodar na porta 3000
 
