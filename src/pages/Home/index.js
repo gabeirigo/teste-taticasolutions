@@ -8,15 +8,14 @@ import { Button } from "primereact/button";
 import { useDispatch } from 'react-redux';
 import { SELECT_INSTANCE } from '../../store/actions/global'
 import { Redirect } from 'react-router-dom';
+import Message from '../../utils/Message';
 
 export default function Home() {
 
   const _columns = [
     { field: "name", header: "Nome da instância" },
-    { field: "type", header: "Tipo da insância" },
-    { field: "region", header: "Região / Zona" },
-    { field: "ip", header: "IP" },
-    { field: "state", header: "Estado" },
+    { field: "image", header: "Imagem" },
+    { field: "zone", header: "Região / Zona" },
     { field: "actions", header: "Actions"}
   ];
 
@@ -50,11 +49,19 @@ export default function Home() {
     _setRedirect(true);
   }
 
+  async function _delete(instance) {
+    let response = await InstanceService.delete(instance);
+    if(response) {
+      Message.showSuccess("Isso aí", "Você deletou uma instancia com sucesso")
+      _getAllInstances();
+    }
+  }
+
   function _buildDataTable(instances) {
     let data = instances.map(element => {
       element.actions = (<div>
         <Button className="mr" icon="pi pi-eye" onClick={() => _selectInstance(element)}></Button>
-        <Button className="p-button-danger" icon="pi pi-ban"></Button>
+        <Button className="p-button-danger" icon="pi pi-ban" onClick={() => _delete(element)}></Button>
       </div>)
 
       return element;

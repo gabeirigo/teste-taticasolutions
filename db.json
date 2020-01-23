@@ -1,47 +1,56 @@
 {
   "instances": [
     {
-      "id": 1,
-      "name": "testeSRV",
-      "type": "XMicro (2 vCPU, 4096 MB memória)",
-      "region": "nova",
-      "ip": "10.0.0.1",
-      "state": "running"
+      "flavor": {
+        "id": 1,
+        "family": "Uso Geral",
+        "flavor": "XXNano",
+        "cpu": "1",
+        "memory": 0.5
+      },
+      "volume": [
+        {
+          "size": 852,
+          "name": "teste 2",
+          "type": "HDD"
+        },
+        {
+          "size": 1555,
+          "name": "teste 2",
+          "type": "HDD"
+        }
+      ],
+      "image": "Windows Server 2018",
+      "name": "teste",
+      "zone": "us-east-2",
+      "id": 7
     },
     {
-      "id": 2,
-      "name": "testeSRV",
-      "type": "XMicro (2 vCPU, 4096 MB memória)",
-      "region": "nova",
-      "ip": "10.0.0.2",
-      "state": "running"
-    },
-    {
-      "id": 3,
-      "name": "testeSRV",
-      "type": "XMicro (2 vCPU, 4096 MB memória)",
-      "region": "nova",
-      "ip": "10.0.0.3",
-      "state": "running"
-    },
-    {
-      "id": 4,
-      "name": "testeSRV",
-      "type": "XMicro (2 vCPU, 4096 MB memória)",
-      "region": "nova",
-      "ip": "10.0.0.4",
-      "state": "running"
-    },
-    {
-      "id": 5,
-      "name": "testeSRV",
-      "type": "XMicro (2 vCPU, 4096 MB memória)",
-      "region": "nova",
-      "ip": "10.0.0.5",
-      "state": "running"
+      "flavor": {
+        "id": 2,
+        "family": "Uso Geral",
+        "flavor": "XNano",
+        "cpu": "1",
+        "memory": 1
+      },
+      "volume": [
+        {
+          "size": 1609,
+          "name": "teste",
+          "type": "HDD"
+        },
+        {
+          "size": 2190,
+          "name": "teste",
+          "type": "HDD"
+        }
+      ],
+      "image": "CentOS 7.6",
+      "name": "Teste",
+      "zone": "us-east-2",
+      "id": 8
     }
   ],
-  
   "flavors": [
     {
       "id": 1,

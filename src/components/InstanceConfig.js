@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Panel} from 'primereact/panel';
 import Table from '../components/Table';
+import SectionTitle from '../components/SectionTitle';
 import FlavorInstance from '../services/Flavor';
 import {Dropdown} from 'primereact/dropdown';
 import { SELECT_INSTANCE } from '../store/actions/global';
 
 export default function InstanceConfig() {
-
 
   const _columns = [
     { field: "family", header: "Família" },
@@ -18,7 +19,7 @@ export default function InstanceConfig() {
 
   const _zones = [
     {label: 'Leste dos EUA (Ohio)', value: 'us-east-2'},
-    {label: 'Leste dos EUA (Norte da Virgínia)	', value: 'us-east-1'},
+    {label: 'Leste dos EUA (Norte da Virgínia)', value: 'us-east-1'},
     {label: 'Oeste dos EUA (Norte da Califórnia)', value: 'us-west-1'},
     {label: 'Oeste dos EUA (Oregon)', value: 'us-west-2'}
   ]
@@ -37,6 +38,10 @@ export default function InstanceConfig() {
     if (response) _setList(response.data);
   }
 
+  useEffect(() => {
+    if(_flavor) dispatch({type: SELECT_INSTANCE, payload: {...instance, flavor: _flavor}})
+  }, [_flavor])
+
   return (
     <div className="content">
       <Panel header="Instância">
@@ -44,6 +49,7 @@ export default function InstanceConfig() {
             <label>Nome da instância: </label>
             <input 
               className="form-control" 
+              required
               value={instance.name}
               placeholder="ex.: Server Master"
               onChange={(e) => { dispatch({type: SELECT_INSTANCE, payload: {...instance, name: e.target.value}})}} />
@@ -55,8 +61,10 @@ export default function InstanceConfig() {
               value={instance.zone}
               options={_zones} 
               onChange={(e) => { dispatch({type: SELECT_INSTANCE, payload: {...instance, zone: e.value}})}} 
-              placeholder="Select a City"/>
+              placeholder="Selecione a zona de disponibilidade"/>
           </div>
+
+          <SectionTitle label="Selecione um flavor"></SectionTitle>
 
           <Table 
             selectionMode="single" 

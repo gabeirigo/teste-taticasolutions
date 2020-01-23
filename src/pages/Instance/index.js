@@ -10,8 +10,8 @@ import { Button } from 'primereact/button';
 import Image from '../../components/Image';
 import InstanceConfig from '../../components/InstanceConfig';
 import Volume from '../../components/Volume';
-import Network from '../../components/Network';
-import Configuration from '../../components/Configuration';
+// import Network from '../../components/Network';
+// import Configuration from '../../components/Configuration';
 import Review from '../../components/Review';
 import { UNSELECT_INSTANCE } from '../../store/actions/global';
 
@@ -21,17 +21,17 @@ export default function Instance() {
         <Image />, // 0
         <InstanceConfig />, // 1
         <Volume />, // 2
-        <Network />, // 3
-        <Configuration />, // 4
-        <Review /> // 5
+        // <Network />, // 3
+        // <Configuration />, // 4
+        <Review /> // 3
     ]
 
     const stepsItems = [
         { label: 'Imagem'},
         { label: 'Instância' },
         { label: 'Volume'},
-        { label: 'Rede'},
-        { label: 'Configuração'},
+        // { label: 'Rede'},
+        // { label: 'Configuração'},
         { label: 'Revisão'}
     ]
 
@@ -44,6 +44,10 @@ export default function Instance() {
     useEffect(() => {
         _setComponentToRender(listComponentsToRender[_activeIndex])
     }, [_activeIndex])
+    
+    useEffect(() => {
+        console.log("INSTANCE", instanceSelected);
+    }, [instanceSelected])
 
     function _prevStep() {
         _setActiveIndex(--_activeIndex);

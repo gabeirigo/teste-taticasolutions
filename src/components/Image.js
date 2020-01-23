@@ -1,21 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { Panel } from 'primereact/panel';
 import { RadioButton } from 'primereact/radiobutton';
 import LinuxList from './LinuxList';
 import WindowsList from './WindowsList';
-import { SELECT_INSTANCE } from '../store/actions/global';
 
 export default function Image() {
 
-  let instance = useSelector(state => state.global.instanceSelected);
-  let dispatch = useDispatch();
   let [_os, _setOs] = useState("windows");
-
-  useEffect(() => {
-    dispatch({type: SELECT_INSTANCE, payload: {...instance, image: _os}})
-  }, [_os])
 
   return (
     <div className="content">
